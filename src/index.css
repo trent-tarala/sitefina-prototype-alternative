@@ -81,6 +81,10 @@
   label {
     font-family: inherit;
   }
+
+  button {
+    cursor: pointer;
+  }
 }
 
 .font-body {
@@ -95,6 +99,7 @@
 
 .liquid-glass {
   position: relative;
+  overflow: hidden;
   background: rgba(255, 255, 255, 0.01);
   background-blend-mode: luminosity;
   backdrop-filter: blur(4px);
@@ -165,6 +170,14 @@
     linear-gradient(#fff 0 0);
   mask-composite: exclude;
   pointer-events: none;
+}
+
+.feature-card,
+.feature-card-dark {
+  background: #252b4c;
+  border-radius: 1.25rem;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero-heading {

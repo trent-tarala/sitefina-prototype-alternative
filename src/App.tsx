@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
+import { useDevModal } from './context/DevModalContext'
 import { HlsVideoBackground } from './components/HlsVideoBackground'
+import { FeaturesSection } from './components/FeaturesSection'
 import { ProjectsSection } from './components/ProjectsSection'
 import { ScrollMarquee } from './components/ScrollMarquee'
 import { ScrollRevealText } from './components/ScrollRevealText'
@@ -57,6 +59,8 @@ const ABOUT_TEXT =
   'We blend thoughtful craft with bold creativity to design digital experiences that captivate, convert, and scale — building ambitious brands that truly thrive and lead on the modern web.'
 
 function Navbar() {
+  const { openDevModal } = useDevModal()
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex w-full flex-row items-center justify-between px-8 py-6">
       <span className="font-body text-xl font-semibold tracking-tight text-foreground">
@@ -77,7 +81,8 @@ function Navbar() {
 
       <button
         type="button"
-        className="liquid-glass-strong rounded-full px-6 py-2.5 font-body text-sm font-medium text-foreground"
+        onClick={openDevModal}
+        className="liquid-glass-strong cursor-pointer rounded-full px-6 py-2.5 font-body text-sm font-medium text-foreground"
       >
         Get Started
       </button>
@@ -86,6 +91,8 @@ function Navbar() {
 }
 
 function Hero() {
+  const { openDevModal } = useDevModal()
+
   return (
     <section className="relative h-screen w-full overflow-hidden">
       <video
@@ -124,7 +131,10 @@ function Hero() {
 
           <form
             className="liquid-glass flex w-full max-w-2xl items-center rounded-full p-1.5 md:p-2"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={(e) => {
+              e.preventDefault()
+              openDevModal()
+            }}
           >
             <div className="flex flex-1 items-center gap-2 px-4">
               <svg
@@ -152,7 +162,7 @@ function Hero() {
               type="submit"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
-              className="iridescent-button shrink-0 rounded-full px-8 py-3 font-body text-sm font-medium text-background"
+              className="iridescent-button shrink-0 cursor-pointer rounded-full px-8 py-3 font-body text-sm font-medium text-background"
             >
               Get a Demo
             </motion.button>
@@ -237,6 +247,7 @@ function VideoShowcase() {
 }
 
 function CTA() {
+  const { openDevModal } = useDevModal()
   const fadeUp = {
     initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },
@@ -283,13 +294,15 @@ function CTA() {
         >
           <button
             type="button"
-            className="rounded-full bg-foreground px-10 py-4 font-body text-sm font-medium text-background"
+            onClick={openDevModal}
+            className="cursor-pointer rounded-full bg-foreground px-10 py-4 font-body text-sm font-medium text-background"
           >
             START A PROJECT
           </button>
           <button
             type="button"
-            className="liquid-glass-strong rounded-full px-10 py-4 font-body text-sm font-medium text-foreground"
+            onClick={openDevModal}
+            className="liquid-glass-strong cursor-pointer rounded-full px-10 py-4 font-body text-sm font-medium text-foreground"
           >
             BOOK A CALL
           </button>
@@ -399,6 +412,7 @@ export default function App() {
       <Navbar />
       <Hero />
       <About />
+      <FeaturesSection />
       <SelectedWork />
       <ScrollMarquee />
       <ProjectsSection />

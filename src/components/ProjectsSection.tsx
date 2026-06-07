@@ -5,6 +5,7 @@ import {
   useTransform,
   type MotionValue,
 } from 'framer-motion'
+import { useDevModal } from '../context/DevModalContext'
 import { FadeIn } from './FadeIn'
 
 const STICKY_BASE = 32
@@ -55,16 +56,17 @@ const PROJECT_CARDS: ProjectData[] = [
   },
 ]
 
-function LiveProjectButton({ href }: { href: string }) {
+function LiveProjectButton() {
+  const { openDevModal } = useDevModal()
+
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="font-body shrink-0 rounded-full border-2 border-[#D7E2EA] px-8 py-3 text-sm font-medium uppercase tracking-wide text-[#D7E2EA] transition-colors duration-200 hover:bg-[#D7E2EA]/10 active:bg-[#D7E2EA]/20 sm:px-10 sm:py-3.5 sm:text-base"
+    <button
+      type="button"
+      onClick={openDevModal}
+      className="font-body shrink-0 cursor-pointer rounded-full border-2 border-[#D7E2EA] px-8 py-3 text-sm font-medium uppercase tracking-wide text-[#D7E2EA] transition-colors duration-200 hover:bg-[#D7E2EA]/10 active:bg-[#D7E2EA]/20 sm:px-10 sm:py-3.5 sm:text-base"
     >
       Live Project
-    </a>
+    </button>
   )
 }
 
@@ -111,7 +113,7 @@ function StickyProjectCard({
               </span>
             </div>
           </div>
-          <LiveProjectButton href={project.href} />
+          <LiveProjectButton />
         </div>
 
         <div className="flex w-full flex-col gap-4 md:flex-row md:gap-5">

@@ -159,7 +159,7 @@ export function ProjectsSection() {
         className="flex flex-col items-center py-20 sm:py-24 md:py-32"
       >
         <h2 className="w-full text-center font-body text-4xl font-medium tracking-[-2px] text-foreground md:text-5xl lg:text-6xl">
-          Project
+          alternate portfolio placeholder
         </h2>
       </FadeIn>
 
